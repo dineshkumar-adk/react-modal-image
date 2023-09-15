@@ -23,24 +23,7 @@ const crossOriginDownload = href => event => {
   // else proceed to use `fetch` for cross origin image download
 
   event.preventDefault();
-
-  fetch(href)
-    .then(res => {
-      if (!res.ok) {
-        console.error("Failed to download image, HTTP status " + res.status +  " from " + href)
-      }
-
-      return res.blob().then(blob => {
-        let tmpAnchor = document.createElement("a")
-        tmpAnchor.setAttribute("download", href.split("/").pop())
-        tmpAnchor.href = URL.createObjectURL(blob)
-        tmpAnchor.click()
-      })
-    })
-    .catch(err => {
-      console.error(err)
-      console.error("Failed to download image from " + href)
-    })
+  window.open(href);
 };
 
 
